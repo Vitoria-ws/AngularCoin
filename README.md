@@ -13,7 +13,11 @@ AngularCoin permite consultar taxas de câmbio atualizadas, converter valores en
 | ![Tela do conversor](docs/screenshots/tela-conversor.png) | ![Tela do histórico](docs/screenshots/tela-historico.png) | ![Tela do gráfico](docs/screenshots/tela-grafico.png) |
 
 ---
+### Funcionamento offline
 
+Quando a conexão com a internet é perdida, o app continua exibindo a última cotação salva localmente, sinalizando o modo offline ao usuário:
+
+![Modo offline](docs/screenshots/tela-modo-offline.png)
 ## ✨ Funcionalidades
 
 - **Conversão de moedas em tempo real**, consumindo a API pública [Frankfurter](https://frankfurter.dev) (sem necessidade de chave de API).
