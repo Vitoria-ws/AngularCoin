@@ -1,0 +1,47 @@
+<section class="chart-card">
+  <header class="chart-card__header">
+    <span class="eyebrow">Últimos 30 dias</span>
+    <h1>Gráfico de variação</h1>
+  </header>
+
+  <div class="pickers-row">
+    <app-currency-picker
+      label="De"
+      [selected]="from"
+      [currencies]="currencies"
+      (selectedChange)="onFromChange($event)"
+    ></app-currency-picker>
+
+    <app-currency-picker
+      label="Para"
+      [selected]="to"
+      [currencies]="currencies"
+      (selectedChange)="onToChange($event)"
+    ></app-currency-picker>
+  </div>
+
+  <p class="loading-text" *ngIf="loading">Carregando histórico…</p>
+
+  <div class="chart-wrapper" *ngIf="!loading && hasData">
+    <svg [attr.viewBox]="'0 0 ' + viewW + ' ' + viewH" class="chart-svg">
+      <line [attr.x1]="padding" [attr.y1]="viewH - padding" [attr.x2]="viewW - padding" [attr.y2]="viewH - padding" class="axis-line" />
+      <path [attr.d]="pathD" class="chart-line" fill="none" />
+      <circle *ngFor="let p of points" [attr.cx]="p.x" [attr.cy]="p.y" r="2.5" class="chart-dot" />
+    </svg>
+
+    <div class="chart-legend">
+      <span>{{ points[0].date }} · {{ points[0].value | number:'1.4-4' }}</span>
+      <span class="legend-pair">1 {{ from }} em {{ to }}</span>
+      <span>{{ points[points.length - 1].date }} · {{ points[points.length - 1].value | number:'1.4-4' }}</span>
+    </div>
+
+    <div class="chart-stats">
+      <span>Mínima: {{ minValue | number:'1.4-4' }}</span>
+      <span>Máxima: {{ maxValue | number:'1.4-4' }}</span>
+    </div>
+  </div>
+
+  <p class="empty-text" *ngIf="!loading && !hasData">
+    Não há dados históricos suficientes para esse par de moedas no momento.
+  </p>
+</section>

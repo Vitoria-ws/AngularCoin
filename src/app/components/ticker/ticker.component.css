@@ -1,0 +1,66 @@
+.ticker-bar {
+  overflow: hidden;
+  background: var(--color-panel-alt);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+  position: relative;
+}
+
+.ticker-track {
+  display: inline-flex;
+  align-items: center;
+  animation: scroll-left 38s linear infinite;
+  padding: 0.55rem 0;
+}
+
+.ticker-bar:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  padding: 0 1.25rem;
+  border-right: 1px solid var(--color-border);
+}
+
+.pair {
+  color: var(--color-text-muted);
+}
+
+.value {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.arrow {
+  font-size: 0.7rem;
+}
+
+.arrow.up {
+  color: var(--color-up);
+}
+
+.arrow.down {
+  color: var(--color-down);
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+}

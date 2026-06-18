@@ -1,0 +1,49 @@
+/* ===========================================================
+   AngularCoin — estilos globais e tokens de design
+   Tema inspirado nos painéis de câmbio de aeroportos/bancos:
+   fundo escuro, números grandes em fonte monoespaçada e um
+   acento dourado (cor de moeda/ouro).
+   =========================================================== */
+
+:root {
+  --color-bg: #0b132b;
+  --color-panel: #131c3a;
+  --color-panel-alt: #1c2541;
+  --color-border: #2b3863;
+  --color-gold: #f0a500;
+  --color-up: #3ddc97;
+  --color-down: #ff6b6b;
+  --color-text: #e8eef2;
+  --color-text-muted: #8d99ae;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Inter', sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+}

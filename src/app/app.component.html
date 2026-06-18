@@ -1,0 +1,33 @@
+<div class="app-shell">
+  <header class="app-header">
+    <div class="brand">
+      <span class="brand-mark">AC</span>
+      <div class="brand-text">
+        <strong>AngularCoin</strong>
+        <small>Conversão de moedas em tempo real</small>
+      </div>
+    </div>
+
+    <nav class="app-nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Conversor</a>
+      <a routerLink="/historico" routerLinkActive="active">Histórico</a>
+      <a routerLink="/grafico" routerLinkActive="active">Gráfico</a>
+      <a routerLink="/configuracoes" routerLinkActive="active">Configurações</a>
+    </nav>
+
+    <div class="status-pill" [class.offline]="!isOnline">
+      <span class="dot"></span>
+      {{ isOnline ? 'Online' : 'Modo offline' }}
+    </div>
+  </header>
+
+  <app-ticker></app-ticker>
+
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="app-footer">
+    <p>AngularCoin — projeto acadêmico de conversão de moedas com Angular e a API Frankfurter.</p>
+  </footer>
+</div>

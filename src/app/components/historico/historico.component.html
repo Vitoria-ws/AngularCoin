@@ -1,0 +1,33 @@
+<section class="history-card">
+  <header class="history-card__header">
+    <div>
+      <span class="eyebrow">Registros locais</span>
+      <h1>Histórico de conversões</h1>
+    </div>
+    <button type="button" class="btn-secondary" (click)="clear()" *ngIf="entries.length">
+      Limpar histórico
+    </button>
+  </header>
+
+  <div class="empty-state" *ngIf="entries.length === 0">
+    <p>Você ainda não fez nenhuma conversão.</p>
+    <p class="muted">Vá até o Conversor, escolha as moedas e clique em "Converter e salvar no histórico".</p>
+  </div>
+
+  <ul class="history-list" *ngIf="entries.length">
+    <li class="history-item" *ngFor="let entry of entries">
+      <div class="history-item__main">
+        <span class="pair">{{ entry.from }} → {{ entry.to }}</span>
+        <span class="amounts">
+          {{ entry.amount | number:'1.2-2' }} {{ entry.from }}
+          <span class="arrow">→</span>
+          {{ entry.result | number:'1.2-2' }} {{ entry.to }}
+        </span>
+      </div>
+      <div class="history-item__meta">
+        <span class="rate">1 {{ entry.from }} = {{ entry.rate | number:'1.4-4' }} {{ entry.to }}</span>
+        <span class="date">{{ entry.date | date:'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+    </li>
+  </ul>
+</section>

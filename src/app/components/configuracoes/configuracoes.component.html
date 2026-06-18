@@ -1,0 +1,44 @@
+<section class="settings-card" *ngIf="settings">
+  <header class="settings-card__header">
+    <span class="eyebrow">Preferências</span>
+    <h1>Configurações</h1>
+  </header>
+
+  <div class="setting-block">
+    <label for="frequency">Frequência de atualização das taxas</label>
+    <select
+      id="frequency"
+      [(ngModel)]="settings.refreshFrequencyMinutes"
+      (ngModelChange)="save()"
+    >
+      <option *ngFor="let opt of frequencyOptions" [value]="opt.value">{{ opt.label }}</option>
+    </select>
+  </div>
+
+  <div class="setting-block toggle-block">
+    <div class="toggle-row">
+      <label for="notifications">Notificar variações significativas</label>
+      <input
+        id="notifications"
+        type="checkbox"
+        [(ngModel)]="settings.notificationsEnabled"
+        (ngModelChange)="toggleNotifications()"
+      />
+    </div>
+    <p class="hint">Avisa quando a cotação do par de moedas que você está acompanhando mudar bastante.</p>
+  </div>
+
+  <div class="setting-block" *ngIf="settings.notificationsEnabled">
+    <label for="threshold">Variação mínima para notificar (%)</label>
+    <input
+      id="threshold"
+      type="number"
+      min="0.1"
+      step="0.1"
+      [(ngModel)]="settings.notificationThreshold"
+      (ngModelChange)="save()"
+    />
+  </div>
+
+  <p class="permission-message" *ngIf="permissionMessage">{{ permissionMessage }}</p>
+</section>

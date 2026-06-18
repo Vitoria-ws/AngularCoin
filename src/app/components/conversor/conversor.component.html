@@ -1,0 +1,58 @@
+<section class="converter-card">
+  <header class="converter-card__header">
+    <span class="eyebrow">Painel de cotação</span>
+    <h1>Conversor de moedas</h1>
+    <p class="subtitle" *ngIf="lastUpdated">
+      Cotação de {{ lastUpdated }}
+      <span *ngIf="isOffline" class="offline-tag">— usando dados salvos (offline)</span>
+    </p>
+  </header>
+
+  <div class="amount-row">
+    <label for="amount">Valor a converter</label>
+    <input
+      id="amount"
+      type="number"
+      min="0"
+      step="0.01"
+      [(ngModel)]="amount"
+      (ngModelChange)="updateResult()"
+      class="amount-input"
+    />
+  </div>
+
+  <div class="pickers-row">
+    <app-currency-picker
+      label="De"
+      [selected]="from"
+      [currencies]="currencies"
+      (selectedChange)="onFromChange($event)"
+    ></app-currency-picker>
+
+    <button type="button" class="swap-btn" (click)="swap()" aria-label="Inverter moedas" title="Inverter moedas">
+      ⇄
+    </button>
+
+    <app-currency-picker
+      label="Para"
+      [selected]="to"
+      [currencies]="currencies"
+      (selectedChange)="onToChange($event)"
+    ></app-currency-picker>
+  </div>
+
+  <div class="result-board" *ngIf="result != null">
+    <span class="result-label">{{ amount }} {{ from }} equivale a</span>
+    <span class="result-value">{{ result | number:'1.2-2' }} {{ to }}</span>
+    <span class="rate-line" *ngIf="rate">1 {{ from }} = {{ rate | number:'1.4-4' }} {{ to }}</span>
+  </div>
+
+  <div class="actions-row">
+    <button type="button" class="btn-primary" (click)="convert()" [disabled]="loading || result == null">
+      {{ justSaved ? 'Salvo no histórico ✓' : 'Converter e salvar no histórico' }}
+    </button>
+    <button type="button" class="btn-secondary" (click)="fetchRates()" [disabled]="loading">
+      {{ loading ? 'Atualizando…' : 'Atualizar cotação' }}
+    </button>
+  </div>
+</section>

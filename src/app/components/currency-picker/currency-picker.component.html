@@ -1,0 +1,39 @@
+<div class="picker">
+  <span class="picker-label" *ngIf="label">{{ label }}</span>
+
+  <button type="button" class="picker-trigger" (click)="toggle()">
+    <span class="symbol">{{ selectedSymbol }}</span>
+    <span class="code-name">
+      <strong>{{ selected }}</strong>
+      <small>{{ selectedName }}</small>
+    </span>
+    <span class="chevron" [class.open]="isOpen">▾</span>
+  </button>
+
+  <div class="picker-panel" *ngIf="isOpen">
+    <input
+      type="text"
+      class="picker-search"
+      placeholder="Buscar por nome ou código (ex: real, USD)"
+      [(ngModel)]="searchTerm"
+      autofocus
+    />
+
+    <ul class="picker-list">
+      <li
+        *ngFor="let code of filteredCodes"
+        (click)="choose(code)"
+        [class.active]="code === selected"
+      >
+        <span class="symbol">{{ symbolFor(code) }}</span>
+        <span class="code">{{ code }}</span>
+        <span class="name">{{ currencies[code] }}</span>
+      </li>
+
+      <li class="empty" *ngIf="filteredCodes.length === 0">Nenhuma moeda encontrada</li>
+    </ul>
+  </div>
+
+  <!-- Camada para fechar o painel ao clicar fora -->
+  <div class="picker-backdrop" *ngIf="isOpen" (click)="close()"></div>
+</div>

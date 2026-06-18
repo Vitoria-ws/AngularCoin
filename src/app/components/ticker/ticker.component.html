@@ -1,0 +1,15 @@
+<div class="ticker-bar" *ngIf="items.length">
+  <div class="ticker-track">
+    <ng-container *ngFor="let i of [0,1]">
+      <span class="ticker-item" *ngFor="let item of items">
+        <span class="pair">USD/{{ item.code }}</span>
+        <strong class="value">{{ item.rate | number:'1.2-4' }}</strong>
+        <span
+          class="arrow"
+          [class.up]="item.trend === 'up'"
+          [class.down]="item.trend === 'down'"
+        >{{ item.trend === 'up' ? '▲' : item.trend === 'down' ? '▼' : '•' }}</span>
+      </span>
+    </ng-container>
+  </div>
+</div>
