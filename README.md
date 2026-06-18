@@ -39,7 +39,7 @@ AngularCoin permite consultar taxas de câmbio atualizadas, converter valores en
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/SEU-USUARIO/AngularCoin.git
+git clone https://github.com/Vitoria-ws/AngularCoin.git
 cd AngularCoin
 
 # 2. Instale as dependências
